@@ -13,12 +13,11 @@ const mostrarTarjeta = (pokemon) => {
     const li = document.createElement('li'); // Creo el li
 
     const titulo = document.createElement('h2'); // Creo el h2
-    titulo.innerText = pokemon.name;
+    titulo.innerText = pokemon.name; // Pido el nombre del pokemon desde la api
 
     li.appendChild(titulo); // Apendeo mi titulo h2  adentro del li
     contenedor.appendChild(li); // Apendeo el li adentro de mi contenedor
 };
-
 
 
 //Creo el fetch y testeo que ande
@@ -27,7 +26,10 @@ fetch(URL_POKEMON)
 .then (result => {
     const results = result.results;
     const primerResultado = results[0];
-    mostrarTarjeta(primerResultado); //Llamo a mu función
+    const segundoResultado = results[1];
+    mostrarTarjeta(primerResultado);
+    mostrarTarjeta(segundoResultado); //Llamo a mi función
 })
+
 
 
