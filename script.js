@@ -5,14 +5,19 @@ const URL_POKEMON = URL_ENDPOINT + "?limit=100&offset=0";
 //Pruebo que ande
 console.log(URL_POKEMON);
 
+//Creo array de url de los pokemones
+const urlPokemones = [];
+
+// Creo array de ids
+const ids = [];
+
 //Creo funcion para mostrar tarjeta
 const mostrarTarjeta = (pokemon) => {
-    console.log(pokemon);
-    
+
     const contenedor = document.getElementById("contenedor"); // Me traigo el contenedor del HTML
     const li = document.createElement('li'); // Creo el li
     li.addEventListener('click', () => {
-        alert("funciona");
+        mostrarDetalle(pokemon.id);
     })
 
     const titulo = document.createElement('h2'); // Creo el h2
@@ -23,8 +28,8 @@ const mostrarTarjeta = (pokemon) => {
 };
 
 //Creo función que me redireccione a la página de detalles.html
-const mostrarDetalle = (pokemon) => {
-    window.location.href = "http://127.0.0.1:5500/detalles.html";
+const mostrarDetalle = (id) => {
+    window.location.href = "http://127.0.0.1:5500/detalles.html?id="; + id;
 };
 
 
@@ -33,10 +38,14 @@ fetch(URL_POKEMON)
 .then(data => data.json())
 .then (result => {
     const results = result.results;
-    const primerResultado = results[0];
-    const segundoResultado = results[1];
-    mostrarTarjeta(primerResultado);
-    mostrarTarjeta(segundoResultado); //Llamo a mi función
+    //Recorro array results y me guardo la URL de cada pokemon en un array llamado urlPokemones 
+    results.forEach(element => {
+        mostrarTarjeta(element);
+        urlPokemones.push(element.url); 
+        id = parseInt(element.url.slice(34), 10);
+        ids.push(id);
+    });
+    
 })
 
 
