@@ -5,12 +5,29 @@ const URL_POKEMON = URL_ENDPOINT + "?limit=100&offset=0";
 //Pruebo que ande
 console.log(URL_POKEMON);
 
+//Creo funcion para mostrar tarjeta
+const mostrarTarjeta = (pokemon) => {
+    console.log(pokemon);
+    
+    const contenedor = document.getElementById("contenedor"); // Me traigo el contenedor del HTML
+    const li = document.createElement('li'); // Creo el li
+
+    const titulo = document.createElement('h2'); // Creo el h2
+    titulo.innerText = pokemon.name;
+
+    li.appendChild(titulo); // Apendeo mi titulo h2  adentro del li
+    contenedor.appendChild(li); // Apendeo el li adentro de mi contenedor
+};
+
+
+
 //Creo el fetch y testeo que ande
 fetch(URL_POKEMON)
 .then(data => data.json())
 .then (result => {
     const results = result.results;
     const primerResultado = results[0];
-    console.log(primerResultado);
-});
+    mostrarTarjeta(primerResultado); //Llamo a mu función
+})
+
 
