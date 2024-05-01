@@ -5,12 +5,6 @@ const URL_POKEMON = URL_ENDPOINT + "?limit=100&offset=0";
 //Pruebo que ande
 console.log(URL_POKEMON);
 
-//Creo array de url de los pokemones
-const urlPokemones = [];
-
-// Creo array de ids
-const ids = [];
-
 //Creo funcion para mostrar tarjeta
 const mostrarTarjeta = (pokemon) => {
 
@@ -33,19 +27,16 @@ const mostrarDetalle = (id) => {
 };
 
 
+
 //Creo el fetch y testeo que ande
 fetch(URL_POKEMON)
 .then(data => data.json())
 .then (result => {
     const results = result.results;
-    //Recorro array results y me guardo la URL de cada pokemon en un array llamado urlPokemones 
-    results.forEach(element => {
-        mostrarTarjeta(element);
-        urlPokemones.push(element.url); 
-        id = parseInt(element.url.slice(34), 10);
-        ids.push(id);
-    });
-    
+        results.forEach(element => {
+            mostrarTarjeta(element);
+        });
+
 })
 
 
