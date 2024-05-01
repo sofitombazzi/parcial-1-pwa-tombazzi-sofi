@@ -5,3 +5,8 @@ const URL_POKEMON = URL_ENDPOINT + "?limit=100&offset=0";
 //Pruebo que ande
 console.log(URL_POKEMON);
 
+fetch(URL_POKEMON)
+.then(data => data.json())
+.then (result => {
+    console.log(result)
+});
