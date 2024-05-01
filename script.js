@@ -11,12 +11,20 @@ const mostrarTarjeta = (pokemon) => {
     
     const contenedor = document.getElementById("contenedor"); // Me traigo el contenedor del HTML
     const li = document.createElement('li'); // Creo el li
+    li.addEventListener('click', () => {
+        alert("funciona");
+    })
 
     const titulo = document.createElement('h2'); // Creo el h2
     titulo.innerText = pokemon.name; // Pido el nombre del pokemon desde la api
 
     li.appendChild(titulo); // Apendeo mi titulo h2  adentro del li
     contenedor.appendChild(li); // Apendeo el li adentro de mi contenedor
+};
+
+//Creo función que me redireccione a la página de detalles.html
+const mostrarDetalle = (pokemon) => {
+    window.location.href = "http://127.0.0.1:5500/detalles.html";
 };
 
 
